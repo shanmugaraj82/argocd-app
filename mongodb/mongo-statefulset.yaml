@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mongo
+  namespace: mongo
 spec:
   serviceName: mongo
   replicas: 1
@@ -31,14 +32,6 @@ spec:
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db
-  volumeClaimTemplates:
-    - metadata:
-        name: mongo-data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 10Gi
-        # On EKS a default StorageClass usually exists (gp2/gp3).
-        # If you need a specific one, uncomment and set:
-        # storageClassName: gp3
+      volumes:
+        - name: mongo-data
+          emptyDir: {}
