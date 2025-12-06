@@ -7,5 +7,6 @@ spec:
   selector:
     app: golang-weather
   ports:
-    - port: 80
-      targetPort: 8080
+    - name: http
+      port: 80          # external LB port
+      targetPort: 9898  # <-- IMPORTANT: must match containerPort
