@@ -14,15 +14,7 @@ spec:
     spec:
       containers:
         - name: golang-weather
-          image: ghcr.io/your-org/golang-weather:v1
-          imagePullPolicy: Always
+          image: ghcr.io/stefanprodan/podinfo:6.7.0   # public demo app, just for testing
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
-          env:
-            - name: WEATHER_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: weather-api-secret
-                  key: apiKey
-            - name: REGION
-              value: "New York"      # <-- change this
+            - containerPort: 9898
