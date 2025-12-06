@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: golang-weather
+  labels:
+    app: golang-weather
 spec:
   replicas: 1
   selector:
@@ -14,7 +16,7 @@ spec:
     spec:
       containers:
         - name: golang-weather
-          image: ghcr.io/stefanprodan/podinfo:6.7.0   # public demo app, just for testing
+          image: ghcr.io/stefanprodan/podinfo:6.7.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9898
