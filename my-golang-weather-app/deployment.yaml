@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-weather
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-weather
+  template:
+    metadata:
+      labels:
+        app: golang-weather
+    spec:
+      containers:
+        - name: golang-weather
+          image: ghcr.io/your-org/golang-weather:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: WEATHER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: weather-api-secret
+                  key: apiKey
+            - name: REGION
+              value: "New York"      # <-- change this

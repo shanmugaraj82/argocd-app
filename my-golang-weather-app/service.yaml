@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: golang-weather
+spec:
+  type: LoadBalancer
+  selector:
+    app: golang-weather
+  ports:
+    - port: 80
+      targetPort: 8080
